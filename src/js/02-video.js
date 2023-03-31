@@ -5,8 +5,6 @@ const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
 // const PLAYER_STORAGE_KEY = 'videoplayer-current-time';
 
-fillPlayerSavedTime();
-
 player.on('play', function () {
   console.log('played the video!');
 });
@@ -23,7 +21,7 @@ function onPlayerTime(time) {
 player.getVideoTitle().then(function (title) {
   console.log('title:', title);
 });
-
+fillPlayerSavedTime();
 function fillPlayerSavedTime() {
   const savedTime = localStorage.getItem('videoplayer-current-time');
   const parsedSavedTime = JSON.parse(savedTime);
@@ -31,9 +29,7 @@ function fillPlayerSavedTime() {
 
   player
     .setCurrentTime(parsedSavedTime.seconds)
-    .then(function (seconds) {
-      // seconds = the actual time that the player seeked to
-    })
+    .then(function (seconds) {})
     .catch(function (error) {
       switch (error.name) {
         case 'RangeError':
