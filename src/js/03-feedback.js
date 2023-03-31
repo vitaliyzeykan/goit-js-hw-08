@@ -9,7 +9,7 @@ const refs = {
   email: document.querySelector('.feedback-form input'),
   textarea: document.querySelector('.feedback-form textarea'),
 };
-
+  
 refs.form.addEventListener('submit', onFormSubmit);
 refs.form.addEventListener('input', throttle(onFormInput, 1000));
 
