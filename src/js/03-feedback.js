@@ -6,6 +6,8 @@ const formData = {};
 
 const refs = {
   form: document.querySelector('.feedback-form'),
+  email: document.querySelector('.feedback-form input'),
+  textarea: document.querySelector('.feedback-form textarea'),
 };
 
 refs.form.addEventListener('submit', onFormSubmit);
