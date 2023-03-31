@@ -3,7 +3,7 @@ import throttle from 'lodash.throttle';
 
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
-const STORAGE_KEY = 'videoplayer-current-time';
+// const PLAYER_STORAGE_KEY = 'videoplayer-current-time';
 
 fillPlayerSavedTime();
 
@@ -14,8 +14,10 @@ player.on('play', function () {
 player.on('timeupdate', throttle(onPlayerTime, 2000));
 
 function onPlayerTime(time) {
+  // console.log(time);
   const playedTimeJSON = JSON.stringify(time);
-  localStorage.setItem('STORAGE_KEY', playedTimeJSON);
+  localStorage.setItem('videoplayer-current-time', playedTimeJSON);
+  // console.log(playedTimeJSON);
 }
 
 player.getVideoTitle().then(function (title) {
@@ -23,8 +25,9 @@ player.getVideoTitle().then(function (title) {
 });
 
 function fillPlayerSavedTime() {
-  const savedTime = localStorage.getItem('STORAGE_KEY');
+  const savedTime = localStorage.getItem('videoplayer-current-time');
   const parsedSavedTime = JSON.parse(savedTime);
+  console.log(parsedSavedTime);
 
   player
     .setCurrentTime(parsedSavedTime.seconds)
