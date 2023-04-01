@@ -32,6 +32,11 @@ function fillTextarea() {
 
 function onFormSubmit(e) {
   e.preventDefault();
+
+  if (refs.email.value === '' || refs.textarea.value === '') {
+    return alert('Будь ласка заповніть всі поля для вводу');
+  }
+
   console.log(localStorage.getItem('feedback-form-state'));
   e.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
